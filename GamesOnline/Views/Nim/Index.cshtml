@@ -9,6 +9,7 @@
 
     <script src="~/Scripts/game.js"></script>
     <style>
+<<<<<<< HEAD
         .gamefield {
             width: 20px;
             height: 20px;
@@ -19,6 +20,45 @@
 
         .notcheck {
             background-color: gray;
+=======
+        * {
+            padding: 0; margin: 0;
+        }
+        body {
+            padding: 20px;
+        }
+        h1 {
+            display: inline-block;
+            color: green;
+            font-size: 48px;
+        }
+        .button {
+            width: 120px;
+            display: inline-block;
+            border: 1px solid #343434;
+            background-color: #79D279;
+            padding: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 0 2px rgba(0,0,0,0.22);
+        }
+        .button:hover {
+            background-color: #1A941A;
+            color: #fff;
+        }
+        .help {
+            float: right;
+            display: inline-block;
+            width: 250px;
+        }
+        .help h2 {
+            padding: 0 0 10px 0;
+        }
+        .newGame {
+            display: block;
+            margin: 20px 0;
+>>>>>>> 4291aebdb455ff7aebe150258df2def02d75539e
         }
     </style>
     <title>NIM</title>
@@ -30,19 +70,18 @@
 
         <div class="button move">Potvrdit tah</div>
         <div class="help">
+            <h2>Pravidla</h2>
+
             Nim is a mathematical game of strategy in
             which 2 players take turns removing objects
             from distinct heaps. On each turn a player
             must remove at least one object and may
             remove any number of continous objects
             provided they all come from the same heap.
-            There are 3 heaps with 3, 5 and 7 objects
-            correspondingly. You can either play versus
-            a friend or versus the PC in which you
-            choose one of the available diﬀiculties. The
-            player who swipes the last object wins.
+            The player who swipes the last object wins.
+
+            <div class="button newGame">Nová hra</div>
         </div>
-        <div class="button newGame">Nová hra</div>
     </div>
 </body>
 </html>
