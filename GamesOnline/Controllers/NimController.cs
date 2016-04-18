@@ -14,18 +14,14 @@ namespace GamesOnline.Controllers
             return View();
         }
 
-
-
         public ActionResult NewGame()
         {
             return Json(Repository.Instance.NewGame(), JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult Move(string id, int pile, int count )
         {
-            int model = 0;
-            return Json(model, JsonRequestBehavior.DenyGet);
+            return Json(Repository.Instance.Move(id, pile, count), JsonRequestBehavior.DenyGet);
         }
     }
 }
