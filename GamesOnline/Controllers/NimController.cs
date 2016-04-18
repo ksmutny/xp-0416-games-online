@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamesOnline.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace GamesOnline.Controllers
 {
     public class NimController : Controller
     {
-        public ActionResult Index(string id)
+        public ActionResult Index()
         {
-            int model = 0;
-            return View(model);
+            return View();
+        }
+
+
+
+        public ActionResult NewGame()
+        {
+            return Json(Repository.Instance.NewGame(), JsonRequestBehavior.AllowGet);
         }
 
 

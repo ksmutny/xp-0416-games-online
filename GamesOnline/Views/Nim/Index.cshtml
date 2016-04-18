@@ -1,21 +1,41 @@
 ﻿
-@model int
-
-@{
-    Layout = null;
-}
 
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" type="text/javascript"></script>
     <title>NIM</title>
 </head>
 <body>
     <div>
 
-        <h1>@this.Model </h1>
+        <h1>NIM </h1>
+
+
+
+
     </div>
 </body>
 </html>
+
+<script>
+    $(document).ready(function ()
+    {
+        alert('a');
+        newGame();
+       
+    });
+
+
+    function newGame()
+    {
+        $.getJSON('NewGame', function (res)
+        {
+            console.log(res);
+            alert('b');
+        })
+    }
+
+</script>
