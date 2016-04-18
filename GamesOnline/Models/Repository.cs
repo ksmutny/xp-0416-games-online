@@ -7,6 +7,12 @@ namespace GamesOnline.Models
 {
     public class Repository
     {
+        public const int MinPileCount = 2;
+        public const int MaxPileCount = 5;
+
+        public const int MinItemsInPile = 3;
+        public const int MaxItemsInPile = 6;
+
         public static readonly Repository Instance = new Repository();
 
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
@@ -22,10 +28,10 @@ namespace GamesOnline.Models
             };
 
             var random = new Random();
-            res.Piles = new int[random.Next(2, 6)];
+            res.Piles = new int[random.Next(MinPileCount, MaxPileCount + 1)];
             for (int i = 0; i < res.Piles.Length; i++)
             {
-                res.Piles[i] = random.Next(2, 6);
+                res.Piles[i] = random.Next(MinItemsInPile, MaxItemsInPile + 1);
             }
 
             ActiveGames[newid] = res;
@@ -36,7 +42,7 @@ namespace GamesOnline.Models
         {
             if (gameid == null || !ActiveGames.ContainsKey(gameid)) return new GameState { ErrorMessage = "Game expired" };
             var state = ActiveGames[gameid];
-            if (pile <= 0 || pile >= state.Piles.Length) return new GameState { ErrorMessage = "Invalid pile" };
+            if (pile < 0 || pile >= state.Piles.Length) return new GameState { ErrorMessage = "Invalid pile" };
             if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Invalid count" };
             state.Piles[pile] -= count;
 
