@@ -7,17 +7,11 @@ namespace GamesOnline.Models
 {
     public class Repository
     {
-        public const int MinPileCount = 2;
-        public const int MaxPileCount = 5;
-
-        public const int MinItemsInPile = 3;
-        public const int MaxItemsInPile = 6;
-
         public static readonly Repository Instance = new Repository();
 
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
 
-        public GameState NewGame()
+        public GameState NewGame(int[] pilesCountArray)
         {
             string newid = Guid.NewGuid().ToString();
             var res = new GameState
@@ -26,13 +20,8 @@ namespace GamesOnline.Models
                 PlayerOnTheMove = 1,
                 PlayerWins = 0,
             };
-
-            var random = new Random();
-            res.Piles = new int[random.Next(MinPileCount, MaxPileCount + 1)];
-            for (int i = 0; i < res.Piles.Length; i++)
-            {
-                res.Piles[i] = random.Next(MinItemsInPile, MaxItemsInPile + 1);
-            }
+            
+            res.Piles = pilesCountArray; 
 
             ActiveGames[newid] = res;
             return res;
