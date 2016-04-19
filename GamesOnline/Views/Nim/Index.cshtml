@@ -17,7 +17,7 @@
 <div class="wrapper">
     <div class="game">
         <h1>NIM</h1>
-        <p class="player">Hraje hráč číslo: </p>
+        <p class="player">Hraje hráč číslo:  <span id="playerName"></span></p>
             <div id="gameContainer"></div>
 
         <div class="button move">Potvrdit tah</div>
@@ -54,6 +54,7 @@
         function (res) {
             // call jirka js new game
             GenerateGameHtml(res);
+            $("#playerName").text(res.PlayerOnTheMove);
         })
 
     }
@@ -77,6 +78,7 @@
             function (res) {
                 // call jirka js new game
                 GenerateGameHtml(res);
+                $("#playerName").text(res.PlayerOnTheMove);
             })
         });
 
