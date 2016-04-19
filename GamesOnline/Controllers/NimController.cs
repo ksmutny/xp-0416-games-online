@@ -25,15 +25,15 @@ namespace GamesOnline.Controllers
             return View();
         }
 
-        public ActionResult NewGame(string gameName)
+        public ActionResult NewGame(string gameName, string player1, string player2)
         {
             var randomPiles = CreateRandomPiles();
-            return Json(Repository.Instance.NewGame(randomPiles), JsonRequestBehavior.AllowGet);
+            return Json(Repository.Instance.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Move(string id, int pile, int count, int playerNumber)
+        public ActionResult Move(string id, int pile, int count, string playerName)
         {
-            return Json(Repository.Instance.Move(id, pile, count), JsonRequestBehavior.DenyGet);            
+            return Json(Repository.Instance.Move(id, playerName, pile, count), JsonRequestBehavior.DenyGet);            
         }
 
         private int[] CreateRandomPiles()

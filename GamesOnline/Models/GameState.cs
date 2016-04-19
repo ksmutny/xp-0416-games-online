@@ -9,8 +9,11 @@ namespace GamesOnline.Models
     {
         public string GameId;
         public int[] Piles;
-        public int PlayerOnTheMove; // 1,2
-        public int PlayerWins; // 1,2 (0 - nobody)
+        public string PlayerOnTheMove;
+        public string PlayerWins;
         public string ErrorMessage;
+        public string PlayerName1;
+        public string PlayerName2;
+        public bool IsGameOver { get; internal set; }
     }
 }
