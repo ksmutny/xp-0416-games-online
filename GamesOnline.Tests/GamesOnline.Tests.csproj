@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Models\CalculatorSteps.cs" />
     <Compile Include="Models\CalculatorTest.cs" />
+    <Compile Include="Models\NimTest.cs" />
     <Compile Include="Models\RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

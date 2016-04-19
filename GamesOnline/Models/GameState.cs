@@ -15,5 +15,6 @@ namespace GamesOnline.Models
         public string PlayerName1;
         public string PlayerName2;
         public bool IsGameOver { get; internal set; }
+        
     }
 }

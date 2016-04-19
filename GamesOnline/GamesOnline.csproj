@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\GameState.cs" />
+    <Compile Include="Models\Nim.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
