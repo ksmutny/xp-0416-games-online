@@ -17,7 +17,7 @@
 <div class="wrapper">
     <div class="game">
         <h1>NIM</h1>
-        <p class="player">Hraje hráč číslo: </p>
+        <p class="player">Hraje hráč číslo:  <span id="playerName"></span></p>
             <div id="gameContainer"></div>
 
         <div class="button move">Potvrdit tah</div>
@@ -46,9 +46,15 @@
 
     function GetNewGame() {
 
-        $.getJSON('NewGame', function (res) {
+
+        $.post('@Url.Action("NewGame", "Nim")', {
+            gameName: 'HRA',
+            player1: 'A',
+            player2: 'B'        },
+        function (res) {
             // call jirka js new game
             GenerateGameHtml(res);
+            $("#playerName").text(res.PlayerOnTheMove);
         })
 
     }
@@ -64,7 +70,7 @@
 
             var input = GetInput();
 
-            $.post('Move', {
+            $.post('@Url.Action("Move", "Nim")', {
                 id: window.modelId,
                 pile: input[0],
                 count: input[1]
@@ -72,6 +78,7 @@
             function (res) {
                 // call jirka js new game
                 GenerateGameHtml(res);
+                $("#playerName").text(res.PlayerOnTheMove);
             })
         });
 
