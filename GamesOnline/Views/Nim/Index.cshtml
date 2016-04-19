@@ -46,7 +46,12 @@
 
     function GetNewGame() {
 
-        $.getJSON('@Url.Action("NewGame","Nim")', function (res) {
+
+        $.post('@Url.Action("NewGame", "Nim")', {
+            gameName: 'HRA',
+            player1: 'A',
+            player2: 'B'        },
+        function (res) {
             // call jirka js new game
             GenerateGameHtml(res);
         })
