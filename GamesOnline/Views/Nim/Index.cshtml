@@ -19,16 +19,20 @@
 
         .notcheck {
             background-color: gray;
-            padding: 0; margin: 0;
+            padding: 0;
+            margin: 0;
         }
+
         body {
             padding: 20px;
         }
+
         h1 {
             display: inline-block;
             color: green;
             font-size: 48px;
         }
+
         .button {
             width: 120px;
             display: inline-block;
@@ -40,18 +44,22 @@
             text-align: center;
             box-shadow: 0 0 2px rgba(0,0,0,0.22);
         }
-        .button:hover {
-            background-color: #1A941A;
-            color: #fff;
-        }
+
+            .button:hover {
+                background-color: #1A941A;
+                color: #fff;
+            }
+
         .help {
             float: right;
             display: inline-block;
             width: 250px;
         }
-        .help h2 {
-            padding: 0 0 10px 0;
-        }
+
+            .help h2 {
+                padding: 0 0 10px 0;
+            }
+
         .newGame {
             display: block;
             margin: 20px 0;
@@ -83,13 +91,20 @@
 </html>
 
 <script>
+
+    function GetNewGame() {
+
+        $.getJSON('NewGame', function (res) {
+            // call jirka js new game
+            GenerateGameHtml(res);
+        })
+
+    }
+
     $(document).ready(function () {
 
         $('.newGame').click(function () {
-            $.getJSON('NewGame', function (res) {
-                // call jirka js new game
-                GenerateGameHtml(res);
-            })
+            GetNewGame();
         });
 
         $('.move').click(function () {
@@ -107,6 +122,9 @@
                 GenerateGameHtml(res);
             })
         });
+
+
+        GetNewGame();
     });
 
 
