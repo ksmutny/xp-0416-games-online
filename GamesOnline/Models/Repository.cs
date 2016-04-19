@@ -11,14 +11,17 @@ namespace GamesOnline.Models
 
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
 
-        public GameState NewGame(int[] pilesCountArray)
+        public GameState NewGame(string gameName, int[] pilesCountArray, string player1, string player2)
         {
-            string newid = Guid.NewGuid().ToString();
+            string newid = gameName;
             var res = new GameState
             {
                 GameId = newid,
-                PlayerOnTheMove = 1,
-                PlayerWins = 0,
+                PlayerOnTheMove = player1,
+                PlayerWins = string.Empty,
+                PlayerName1 = player1,
+                PlayerName2 = player2,
+                IsGameOver = false,
             };
             
             res.Piles = pilesCountArray; 
@@ -27,7 +30,7 @@ namespace GamesOnline.Models
             return res;
         }
 
-        public GameState Move(string gameid, int pile, int count)
+        public GameState Move(string gameid, string playerName, int pile, int count)
         {
             if (gameid == null || !ActiveGames.ContainsKey(gameid)) return new GameState { ErrorMessage = "Game expired" };
             var state = ActiveGames[gameid];
@@ -37,12 +40,13 @@ namespace GamesOnline.Models
 
             if (state.Piles.All(x => x == 0))
             {
+                state.IsGameOver = true;
                 state.PlayerWins = state.PlayerOnTheMove;
+                return state;
             }
-            if (state.PlayerWins == 0)
-            {
-                state.PlayerOnTheMove = state.PlayerOnTheMove == 1 ? 2 : 1;
-            }
+
+            state.PlayerOnTheMove = state.PlayerOnTheMove == state.PlayerName1 ? state.PlayerName2 : state.PlayerName1;
+
             return state;
         }
     }

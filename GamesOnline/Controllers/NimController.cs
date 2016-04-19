@@ -32,15 +32,25 @@ namespace GamesOnline.Controllers
             return View();
         }
 
-        public JsonResult NewGame(string gameName)
+        public JsonResult NewGame(string gameName, string player1, string player2)
         {
-            var randomPiles = CreateRandomPiles();            
-            return Json(_repo.NewGame(randomPiles), JsonRequestBehavior.AllowGet);
+            var randomPiles = CreateRandomPiles();
+            return Json(_repo.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult Move(string id, int pile, int count, int playerNumber)
+        public JsonResult Move(string id, int pile, int count, string playerName)
         {
-            return Json(_repo.Move(id, pile, count), JsonRequestBehavior.DenyGet);            
+            try
+            {
+                var res = _repo.Move(id, playerName, pile, count);
+                return Json(res, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+            }
+
+            return Json(string.Empty, JsonRequestBehavior.DenyGet);            
         }
 
         private int[] CreateRandomPiles()

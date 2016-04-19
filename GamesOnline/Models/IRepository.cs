@@ -8,7 +8,7 @@ namespace GamesOnline.Models
 {
     public interface IRepository
     {
-        GameState NewGame(int[] pilesCountArray);
-        GameState Move(string gameid, int pile, int count);
+        GameState NewGame(string gameName, int[] pilesCountArray, string player1, string player2);
+        GameState Move(string gameid, string playerName, int pile, int count);
     }
 }

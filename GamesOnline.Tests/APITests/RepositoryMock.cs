@@ -19,14 +19,14 @@ namespace GamesOnline.Tests.APITests
             _state = mockState;
         }
 
-        public GameState Move(string gameid, int pile, int count)
+        public GameState NewGame(string gameName, int[] pilesCountArray, string player1, string player2)
         {
             return _state;
         }
 
-        public GameState NewGame(int[] pilesCountArray)
+        public GameState Move(string gameid, string playerName, int pile, int count)
         {
             return _state;
-        }
+        }       
     }
 }
