@@ -14,69 +14,45 @@
     <title>NIM</title>
 </head>
 <body>
-<div class="wrapper">
-    <div class="game">
-        <h1>NIM</h1>
-        <p class="player">Hraje hráč číslo: </p>
+    <div class="wrapper">
+        <div class="game">
+            <h1>NIM</h1>
+            <p id="messageText" class="player">Hraje hráč číslo: </p>
             <div id="gameContainer"></div>
 
-        <div class="button move">Potvrdit tah</div>
+            <div  id="ButtonMove" class="button move">Potvrdit tah</div>
+        </div>
+
+        <div class="help">
+            <h2>Pravidla</h2>
+
+            <p>
+                Nim is a mathematical game of strategy in
+                which 2 players take turns removing objects
+                from distinct heaps. On each turn a player
+                must remove at least one object and may
+                remove any number of continous objects
+                provided they all come from the same heap.
+                The player who swipes the last object wins.
+            </p>
+
+            <div class="button newGame">Nová hra</div>
+        </div>
     </div>
-
-    <div class="help">
-        <h2>Pravidla</h2>
-
-        <p>
-            Nim is a mathematical game of strategy in
-            which 2 players take turns removing objects
-            from distinct heaps. On each turn a player
-            must remove at least one object and may
-            remove any number of continous objects
-            provided they all come from the same heap.
-            The player who swipes the last object wins.
-        </p>
-
-        <div class="button newGame">Nová hra</div>
-    </div>
-</div>
 </body>
 </html>
 
 <script>
 
-    function GetNewGame() {
 
-        $.getJSON('NewGame', function (res) {
-            // call jirka js new game
-            GenerateGameHtml(res);
-        })
 
-    }
 
     $(document).ready(function () {
 
-        $('.newGame').click(function () {
-            GetNewGame();
-        });
 
-        $('.move').click(function () {
-            // call jirka function to get params
-
-            var input = GetInput();
-
-            $.post('Move', {
-                id: window.modelId,
-                pile: input[0],
-                count: input[1]
-            },
-            function (res) {
-                // call jirka js new game
-                GenerateGameHtml(res);
-            })
-        });
+        InitNim();
 
 
-        GetNewGame();
     });
 
 

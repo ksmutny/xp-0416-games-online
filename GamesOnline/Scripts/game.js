@@ -1,17 +1,122 @@
-﻿
+﻿function S4() {
+    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+}
+
+function InitNim() {
+
+    $('.newGame').click(function () {
+        GetNewGame();
+    });
+
+    $('.move').click(function () {
+        // call jirka function to get params
+        MakeMove();
+    });
+
+    GetNewGame();
+}
+
+function MakeMove() {
+    var input = GetInput();
+
+    $.post('Move', {
+        id: window.modelId,
+        pile: input[0],
+        count: input[1],
+        playerName: window.ModelFromServer.PlayerOnTheMove
+    },
+    function (res) {
+        // call jirka js new game
+        GenerateGameHtml(res);
+    })
+
+}
+
+function GetNewGame() {
+
+    //$.getJSON(
+    //    'NewGame',
+
+    //    function (res) {
+    //        // call jirka js new game
+    //        GenerateGameHtml(res);
+    //    })
+
+    var id = S4();
+
+    $.post('NewGame', {
+        NewGame: id,
+        player1: 'a',
+        player2: 'b',
+    },
+    function (res) {
+        // call jirka js new game
+        GenerateGameHtml(res);
+    })
+
+}
+
+function ShowMakeMove(how) {
+
+
+}
+
+function ShowMessage(text) {
+
+    $("#messageText").html(text);
+
+}
+
 function MakeClick(i, j) {
+
+
+    var turnOn = !window.ModelTable[i][j];
 
     window.ModelTable[i][j] = !window.ModelTable[i][j];
 
-    $("#div" + i + "_" + j).toggleClass("notcheck");
+
+    $("#div" + i + "_" + j).toggleClass("ischeck");
+
+
+    for (var a = 0; a < window.ModelTable.length ; a++) {
+
+        for (var b = 0; b < window.ModelTable[a].length ; b++) {
+
+            if (ModelTable[a][b] && a != i) {
+
+                $("#div" + a + "_" + b).removeClass("ischeck");
+                ModelTable[a][b] = false;
+
+            }
+
+        }
+
+    }
+
 
 }
 
 function GetItem(i, j) {
-    return '<div  id="div' + i + '_' + j + '"  class="gamefield notcheck" onclick="MakeClick(' + i + ',' + j + ')"  />';
+    return '<div  id="div' + i + '_' + j + '"  class="gamefield " onclick="MakeClick(' + i + ',' + j + ')"  />';
 }
 
 function GenerateGameHtml(model) {
+
+
+    if (model.ErrorMessage) {
+        ShowMessage(model.ErrorMessage);
+        return;
+    }
+    else
+        if (model.PlayerWins) {
+            ShowMessage("Vyhrál hráč " + model.PlayerWins);
+        }
+        else { ShowMessage("Hraje hráč " + model.PlayerOnTheMove); }
+
+
+
+
+    window.ModelFromServer = model;
 
     window.modelId = model.GameId;
 
@@ -27,7 +132,7 @@ function GenerateGameHtml(model) {
 
         html += "<tr>";
 
-        for (var j = 0; j < model.Piles[i] ; j++) {
+        for (var j = 0; j < model.Piles[i]; j++) {
 
             arr.push(false);
 
@@ -42,6 +147,9 @@ function GenerateGameHtml(model) {
     html += "</table>";
 
     $("#gameContainer").html(html);
+
+
+
 
 }
 
@@ -77,12 +185,4 @@ function GetInput() {
 }
 
 
-
-function MakeMove() {
-
-
-}
-
-function Reset() {
-}
 
