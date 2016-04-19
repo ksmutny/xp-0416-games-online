@@ -46,7 +46,7 @@
 
     function GetNewGame() {
 
-        $.getJSON('NewGame', function (res) {
+        $.getJSON('@Url.Action("NewGame","Nim")', function (res) {
             // call jirka js new game
             GenerateGameHtml(res);
         })
@@ -64,7 +64,7 @@
 
             var input = GetInput();
 
-            $.post('Move', {
+            $.post('@Url.Action("Move", "Nim")', {
                 id: window.modelId,
                 pile: input[0],
                 count: input[1]
