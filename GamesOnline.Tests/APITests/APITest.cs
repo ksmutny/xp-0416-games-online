@@ -11,26 +11,83 @@ namespace GamesOnline.Tests.APITests
     public class APITest
     {
         [Fact]
-        public void NewGameTest()
+        public void NewGameTestEmptyName()
         {
-            //var controller = new GamesOnline.Controllers.NimController();
-            //var resModel = controller.NewGame(string.Empty);
+            var gs = new GameState {
+                GameId = "42",
+                Piles = new int[] { 2,3,4,2 },
+                PlayerOnTheMove = 1                
+            };
+            var repoMock = new RepositoryMock(gs);
+            var controller = new GamesOnline.Controllers.NimController(repoMock);
+            var resModel = controller.NewGame(string.Empty);
+
+            Assert.True(resModel.Data.GetType() == typeof(GameState));
+
+            var returnGs = (GameState)resModel.Data;
+
+            Assert.Equal(returnGs.GameId, gs.GameId);
+            Assert.Equal(returnGs.PlayerOnTheMove, gs.PlayerOnTheMove);
+            Assert.True(returnGs.Piles.Length == gs.Piles.Length);
+
+            for (int i = 0; i < returnGs.Piles.Length; i++)
+            {
+                Assert.Equal(returnGs.Piles[i], gs.Piles[i]);
+            }
         }
 
         [Fact]
-        public void MoveTest()
+        public void NewGameTestNotEmptyName()
         {
-            //var repo = Repository.Instance;
+            var gs = new GameState
+            {
+                GameId = "42",
+                Piles = new int[] { 2, 3, 4, 2 },
+                PlayerOnTheMove = 1
+            };
+            var repoMock = new RepositoryMock(gs);
+            var controller = new GamesOnline.Controllers.NimController(repoMock);
+            var resModel = controller.NewGame("My game");
 
-            //var gameId = repo.NewGame().GameId;
+            Assert.True(resModel.Data.GetType() == typeof(GameState));
 
-            //var state1 = repo.Move(gameId, 1, 1);
-            //Assert.Equal(2, state1.PlayerOnTheMove);
-            //Assert.Equal(0, state1.PlayerWins);
+            var returnGs = (GameState)resModel.Data;
 
-            //var state2 = repo.Move(gameId, 0, 1);
-            //Assert.Equal(1, state2.PlayerOnTheMove);
-            //Assert.Equal(0, state2.PlayerWins);
-        }        
+            Assert.Equal(returnGs.GameId, gs.GameId);
+            Assert.Equal(returnGs.PlayerOnTheMove, gs.PlayerOnTheMove);
+            Assert.True(returnGs.Piles.Length == gs.Piles.Length);
+
+            for (int i = 0; i < returnGs.Piles.Length; i++)
+            {
+                Assert.Equal(returnGs.Piles[i], gs.Piles[i]);
+            }
+        }
+
+        //[Fact]
+        //public void MoveTest()
+        //{
+        //    var gs = new GameState
+        //    {
+        //        GameId = "42",
+        //        Piles = new int[] { 2, 3, 4, 2 },
+        //        PlayerOnTheMove = 1
+        //    };
+        //    var repoMock = new RepositoryMock(gs);
+        //    var controller = new GamesOnline.Controllers.NimController(repoMock);
+        //    var resModel = controller.
+
+        //    Assert.True(resModel.Data.GetType() == typeof(GameState));
+
+        //    var returnGs = (GameState)resModel.Data;
+
+        //    Assert.Equal(returnGs.GameId, gs.GameId);
+        //    Assert.Equal(returnGs.PlayerOnTheMove, gs.PlayerOnTheMove);
+        //    Assert.True(returnGs.Piles.Length == gs.Piles.Length);
+
+        //    for (int i = 0; i < returnGs.Piles.Length; i++)
+        //    {
+        //        Assert.Equal(returnGs.Piles[i], gs.Piles[i]);
+        //    }
+        //}        
     }
 }

@@ -15,9 +15,16 @@ namespace GamesOnline.Controllers
         public const int MinItemsInPile = 3;
         public const int MaxItemsInPile = 6;
 
+        private IRepository _repo;
+
         public NimController()
         {
+            _repo = Repository.Instance;
+        }
 
+        public NimController(IRepository repo)
+        {
+            _repo = repo;
         }
 
         public ActionResult Index()
@@ -25,15 +32,15 @@ namespace GamesOnline.Controllers
             return View();
         }
 
-        public ActionResult NewGame(string gameName)
+        public JsonResult NewGame(string gameName)
         {
-            var randomPiles = CreateRandomPiles();
-            return Json(Repository.Instance.NewGame(randomPiles), JsonRequestBehavior.AllowGet);
+            var randomPiles = CreateRandomPiles();            
+            return Json(_repo.NewGame(randomPiles), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Move(string id, int pile, int count, int playerNumber)
+        public JsonResult Move(string id, int pile, int count, int playerNumber)
         {
-            return Json(Repository.Instance.Move(id, pile, count), JsonRequestBehavior.DenyGet);            
+            return Json(_repo.Move(id, pile, count), JsonRequestBehavior.DenyGet);            
         }
 
         private int[] CreateRandomPiles()

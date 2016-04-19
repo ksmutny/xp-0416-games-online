@@ -5,7 +5,7 @@ using System.Web;
 
 namespace GamesOnline.Models
 {
-    public class Repository
+    public class Repository : IRepository
     {
         public static readonly Repository Instance = new Repository();
 
