@@ -1,22 +1,11 @@
 ﻿* {
     padding: 0; margin: 0;
 }
+
 body {
     background-color: #eeeff0;
     overflow: hidden;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+    font-family: Arial;
 }
 
 .wrapper {
@@ -27,39 +16,40 @@ textarea {
 
 .game {
     display: table-cell;
-    padding: 15px;
+    padding: 15px 25px 15px 15px;
 }
 
-.gamefield {
-    width: 20px;
-    height: 20px;
-     background-color: gray;
-    
-    border: 1px solid black;
+.gamefield, .notcheck:hover {
+    width: 64px;
+    height: 64px;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABX1BMVEX////RAC7XACjYACfYACfYACfYACfYACfYACfbACTYACfYACfYACfVACvYACfYACfYACfYACf/AADXACjYACfXACjXACjbACTXACjXACjYACfXACjYACfYACfYACfYACfZACbZACbYACf/AADZACbYACfYACfYACfXACjbACTYACfYACfYACfXACjbACTYACfYACfYACfXACjYACfYACfVACvYACfZACbMADPYACfZACbYACfXACjZACbYACfXACjXACjZACbYACfYACfVACrYACfYACfbACTZACbYACfZACbWACnYACfZACbXACjYACfZACbYACfWACnYACfYACfZACbaACbYACfYACfYACffACDXACjXACjYACfdACLcACPYACfXACjXACjZACbYACfXACjXACjYACfYACfWACnaACXYACfYACfYACfYACfYACfYACfYACfXACjYACcAAADAI0HcAAAAc3RSTlMAC01wiqS+2PIVYrL3BmnD/cIBWt5Gzhy7Oedf+O+EnmuG8AOMdQ2seg52sOxnB8aWzyCpfCTTpgqDWPxzNfUTdEq/kSvFuCobnaAfqNRS9FHRJX3+fiLuoukIeVPxDx1jh6Gzia6OaBosKZf5m7zAtnenwjSE3QAAAAFiS0dEdN9tqG0AAAAJcEhZcwAADdcAAA3XAUIom3gAAAAHdElNRQfgBBMLOQEYar1eAAACcElEQVRYw6VX+18SQRAfOJ7K4wQEQfOBlKFBmlbUoaJWVlqogVppWaa9n/v/fz7hzu4dnPfAm/lpZ2bnu3tzs/MAsCGfXwkEQ+FIJBwKBhS/D65E0YHBGOuh2OBAtF/reCKpMgtShxLxPsxT6QyzpUw65WY/nGWOlB12NM+NMFcaydnb5wvu9owV8nb2o2Nyz7XxCbPZ5FRRLsdGLc2nS/oR12/AjBngJpRn9QuWpi3s54TyVqXaYW+bAeY7wmpF3mLuMoI8f+EOZxfNAEtcfPeevMOl7xeK+zXkH5gBHqLcJ5FNfsij/7S6FCyb7FdWpaahoSd7/kUO3aOtGaL1XoANQ7OGCIXueBDx0zAkjx73AjzZNHQNEVFd8YuSRV3w9Jlm9oH6fEtXb6NIj+oUxv8L/c2/bFpFYHNH6mu7XJCVLyvN2eKe1L9qWcdwqy0t9g+4II1cHN/vpLzPIbOlQ3lGhbMZzA8Jzrx+I3Rt5kBtsamKvy3BmSRfvxWqnZYTQOtIbJvlbPJiGeX56/gdKraazJFW3uO+Mn8V6kWePOGKDwL5I3OhCbFxinMnndUpX32aPzv//AW+qm4A2jfYrH8/Ky1x7rTzOrry94+fv9zsGfv9p8tLMR/43U2cyA8KDUCBAA0gAEEaQBBCNIAQhGkAYYjQACJ0APInkJ1I/o3kQFJoAAr9MZGfMzmh0FMaJtVi2XNSFWn9r+e0LgpLoeq5sIjSVvFc2kRxPdj3Wlxled+teS3vssH457XB0FucuiG5WotDb7LIbR690aS3uvRmm9zuA3ngAPrIQx+6gDz2AX3wBPLoy4k2fCP1O/7/BxRWiSALfDNEAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE2LTA0LTE5VDExOjU3OjAxKzAyOjAwZFGBxwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNi0wNC0xOVQxMTo1NzowMSswMjowMBUMOXsAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');
     display: inline-block;
+    margin: 5px;
 }
 
-.ischeck {
-    background-color: red;
-    padding: 0; margin: 0;
+.notcheck {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAD5QAAA+UBvEs/+AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAQUSURBVHic7ZtNaFVHFMd/8xQjCcaFhIqmKFo3Wpcusi1UqBipupFssnARgstGS0UDfmChuOkmG6moCz/ARdBShAQVgy4j0oIgJLhKEEXjx8MUfB4Xc6PX8c7HM/e+l5d5Bw6EvHv+55z/zJ07H2eUiFCkKKXagB+AjcCaDAWYytAJ4KaIlAuNrwgClFIdQDfwM/AjsPwroWaBEWAYuC4iT/OJMCUikosCy4B+YAyoAJKzVoA7iY9lucWdQ+IK6AEmC0jappOJT1VXAoDtwHgNEzd1HNhecwKATvS7Wa/ETR0BOmtCANAFTC+ApE2dBroKJQDoRY/MvmBeACeBszkkdgA4BcwEPDsL9OZOALAEOB3YCgeBFYnd1RwIOJxgtQOHAnvfaWBJLgQkyQ97HD4D+oAWw/ZeDgQMGZgtiS9fjxgOISGEAF/L3wfWW2yv5EDAEQv2d8C/vp4wLwLQ77zLwUWg1WF/IgcC9jnw2wJIdo4JvtHeNuC9A34J6D3b5pl8GVgV4GcgiSkLYxbH18EG2Il9sHkH7AgZYBKsW/Mg4M8q/OxwkDCNZZ5gA3NNcgaqCGoLcHceBNwANlfhb8CBNRJEAHp6awO5EhjIWuAvR4tUoxXgHLAu0PdlB9YX02bTWGGf2/8HtAUEsAd4k0Pipr4Bdgf4bwUeWDDGMRZQpnGPxXAG2BTg/CjwvoDk5/Q9MGgmkRHHBuC5BaMnkwD0et62pD3gcaiACwUmbuqFgMbos9hOktpPSBv0WwyeAMs9zgZrmPycDnpiasH+JevPImDM8vBvHke7Kbbbu16HvZ7YDllsxz4jAOggexvrJbDS4WAdxQx4oVoGvnXE1072mqECdIgIJbTsgo9/p2VIRF5m/H9OjqOno/WSVuCY7UcReQUMZfxUQuesR1Ol1HVgZ8aDfwArgNXAY+ARcE1EppRS36M/N1nE1VIqwFYReaiU2gz8hF4ofYMe8GbQaxJT/haRbtAt+Jbwbvc/cAYYrcKmaL0N/EN1Y9HbJHe6F0AC9dLuEvrEJlbZWOLT8VSMsqZJAE0C4iZAAa/Q3/oY5XW9JzF1lxK6GCFWmWoSQJOAJgHREzBR7yjqKBMQ+XJ4qYiUlVKjNPaGSP9XbIiMikh5bu9sP9ks/e7ZdDxvsaulnvXEeMpitz9kU3QGaF/Mm6Ih2+K/Lvptcc/ByDRG6ctiPRhxHY31eZw1/tFYYmQ7HH0ObAhw2riHo6mWtB2PP8BRD5TCaNzj8QTAVSBxyRdAgtGYBRIpEFeJjLc4KoXTeCUyCVDcRVIJYLxlcingXk+Ai7dQMuUk3lLZxFHcxdIpEuIsl88YE+K7MGGQEO+VmRQJ8V6aMoiI89qcQUK8FycNIhry6mz0l6cLIeAzBwv8+vwHS9R+wTNXOEcAAAAASUVORK5CYII=');
+    width: 64px;
+    height: 64px;
 }
 
 .game h1 {
     display: inline-block;
-    color: #56A956;
-    font-size: 48px;
+    color: #418C41;
+    font-size: 62px;
 }
 
 .button {
-    width: 120px;
+    width: 170px;
     display: inline-block;
     border: 1px solid #418C41;
     background-color: #56A956;
-    padding: 5px;
+    font-weight: bold;
+    padding: 10px;
     border-radius: 2px;
     cursor: pointer;
     text-align: center;
-    box-shadow: 0 0 2px rgba(0,0,0,0.32);
+    box-shadow: 0 0 5px rgba(0,0,0,0.40);
 }
 
 .button:hover {
@@ -69,15 +59,21 @@ textarea {
 
 .newGame {
     display: block;
-    margin: 20px 0;
+    margin: 20px 0;   
+}
+
+.move {
+    margin: 10px 0;
+    animation: blink infinite 3s;
 }
 
 .help {
     display: table-cell;
-    width: 250px;
+    width: 400px;
     height: 100vh;
     padding: 15px;
     background-color: #fff;
+    border-left: 1px solid #B5B5B5;
 }
 
 .help h2 {
@@ -87,4 +83,38 @@ textarea {
 
 .help p {
     text-align: justify;
+    font-size: 16px;
+}
+
+.help p:first-letter {
+    font-size: 32px;
+    color: #56A956;
+}
+
+.player {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #418C41;
+    border-radius: 2px;
+    width: 250px;
+    padding: 10px 5px;
+    margin: 0 0 12px 0;
+    box-shadow: 0 0 3px rgba(0,0,0,0.30);
+}
+
+#gameContainer table {
+    padding: 10px 10px 10px 0;
+}
+
+@keyframes blink {
+    0% {
+        background-color: #56A956;
+    }
+    50% {
+        background-color: #0A7B0A;
+    }
+    100% {        
+        background-color: #56A956;
+    }
 }
