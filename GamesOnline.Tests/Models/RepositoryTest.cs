@@ -15,12 +15,11 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var state = repo.NewGame();
-            Assert.True(state.Piles.Length >= Repository.MinPileCount && state.Piles.Length <= Repository.MaxPileCount);
-            foreach (int countInPile in state.Piles)
-            {
-                Assert.True(countInPile >= Repository.MinItemsInPile && countInPile <= Repository.MaxItemsInPile);
-            }
+            var piles = new int[] { 5, 2, 5 };
+
+            var state = repo.NewGame(piles);
+
+            Assert.Equal(piles, state.Piles);
         }
 
         [Fact]
@@ -28,7 +27,7 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var gameId = repo.NewGame().GameId;
+            var gameId = repo.NewGame(new int []{ 5, 2 }).GameId;
 
             var state1 = repo.Move(gameId, 1, 1);
             Assert.Equal(2, state1.PlayerOnTheMove);
@@ -44,7 +43,7 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var state = repo.NewGame();
+            var state = repo.NewGame(new int[] { 5, 2 });
             while (state.PlayerWins == 0)
             {
                 bool moved = false;
