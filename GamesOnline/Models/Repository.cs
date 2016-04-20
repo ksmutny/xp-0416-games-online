@@ -36,15 +36,7 @@ namespace GamesOnline.Models
             var state = ActiveGames[gameid];
             if (pile < 0 || pile >= state.Piles.Length) return new GameState { ErrorMessage = "Neplatný tah" };
             if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Neplatný počet" };
-            state.Piles[pile] -= count;
-
-            if (state.Piles.All(x => x == 0))
-            {
-                state.IsGameOver = true;
-                state.PlayerWins = state.PlayerOnTheMove;
-                return state;
-            }
-
+           
             state.Nim = state.Nim.TakeCoins(pile, (uint)count);
 
             return state;
