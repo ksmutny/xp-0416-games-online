@@ -1,7 +1,8 @@
 ﻿function S4() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
-
+// public JsonResult NewGame(string gameName, string player1, string player2)
+// public JsonResult Move(string id, int pile, int count, string playerName)
 function InitNim() {
 
     $('#btnNewGame').click(function () {
@@ -23,7 +24,7 @@ function InitNim() {
 function MakeMove() {
     var input = GetInput();
 
-    $.post('Move', {
+    $.post(moveUrl, {
         id: window.modelId,
         pile: input[0],
         count: input[1],
@@ -48,10 +49,10 @@ function GetNewGame() {
 
     var id = S4();
 
-    $.post('NewGame', {
-        NewGame: id,
+    $.post(newGameUrl, {
         player1: 'a',
         player2: 'b',
+        gameName: id,
     },
     function (res) {
         // call jirka js new game
