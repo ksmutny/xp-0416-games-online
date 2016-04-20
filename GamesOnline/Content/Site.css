@@ -37,6 +37,7 @@ body {
     height: 70px;
 }
 
+
 .pilRow:nth-child(2n+1) {    
     background-color: #D0D0D0;
 }
