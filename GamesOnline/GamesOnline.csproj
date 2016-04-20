@@ -119,6 +119,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AI\Minimax.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\NimController.cs" />
@@ -127,6 +128,8 @@
     </Compile>
     <Compile Include="Models\Calculator.cs" />
     <Compile Include="Models\GameState.cs" />
+    <Compile Include="Models\Nim.cs" />
+    <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\MiniMaxTwo.cs" />
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
