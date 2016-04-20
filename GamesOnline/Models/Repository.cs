@@ -39,6 +39,7 @@ namespace GamesOnline.Models
             var res = new GameState
             {
                 Nim = new Nim(Player.One, pilesCountArray.Select(x => (uint)x).ToArray()),
+                //Nim = new Nim(Player.One, new uint[] { 2, 1 }),
                 GameId = newid,
                 //PlayerOnTheMove = player1,
                 //PlayerWins = string.Empty,
@@ -59,8 +60,11 @@ namespace GamesOnline.Models
             if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Neplatný počet" };
            
             state.Nim = state.Nim.TakeCoins(pile, (uint)count);
-
-            if (state.PlayerName2 == AIPlayerName) state.Nim = state.Nim.AiMove();
+            if (!state.Nim.IsOver && state.PlayerName2 == AIPlayerName)
+            {
+                state.Nim = state.Nim.AiMove();
+                //if (state.Nim.Evaluate() != 0) state.ErrorMessage = "Když nebudeš debil, vyhraješ";
+            }
 
             return state;
         }
