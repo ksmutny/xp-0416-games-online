@@ -38,6 +38,11 @@ namespace GamesOnline.Controllers
             return Json(_repo.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult NewGameAI(string gameName, string player1)
+        {
+            return null;
+        }
+
         public JsonResult Move(string id, int pile, int count, string playerName)
         {
             try
