@@ -9,7 +9,7 @@ namespace GamesOnline.Models
     {
         public static readonly Repository Instance = new Repository();
 
-        public const string AIPlayerName = "_AI_PLAYER_";
+        public const string AIPlayerName = "Počítač";
 
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
 

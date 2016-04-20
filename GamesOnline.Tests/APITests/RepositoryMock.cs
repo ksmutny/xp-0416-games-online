@@ -24,6 +24,11 @@ namespace GamesOnline.Tests.APITests
             return _state;
         }
 
+        public GameState NewAIGame(string gameName, uint[] pilesCountArray, string player1)
+        {
+            return _state;
+        }
+
         public GameState Move(string gameid, string playerName, int pile, int count)
         {
             return _state;
