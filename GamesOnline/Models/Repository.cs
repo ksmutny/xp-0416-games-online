@@ -9,6 +9,8 @@ namespace GamesOnline.Models
     {
         public static readonly Repository Instance = new Repository();
 
+        public const string AIPlayerName = "_AI_PLAYER_";
+
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
 
         public GameState NewGame(string gameName, uint[] pilesCountArray, string player1, string player2)
@@ -17,12 +19,31 @@ namespace GamesOnline.Models
 
             var res = new GameState
             {
-                Nim = new Nim(Player.One, pilesCountArray.Select(x => (uint)x ).ToArray()),
+                Nim = new Nim(Player.One, pilesCountArray.Select(x => (uint)x).ToArray()),
                 GameId = newid,
                 //PlayerOnTheMove = player1,
                 //PlayerWins = string.Empty,
                 PlayerName1 = player1,
                 PlayerName2 = player2,
+                IsGameOver = false,
+            };
+
+            ActiveGames[newid] = res;
+            return res;
+        }
+
+        public GameState NewAIGame(string gameName, uint[] pilesCountArray, string player1)
+        {
+            string newid = gameName;
+
+            var res = new GameState
+            {
+                Nim = new Nim(Player.One, pilesCountArray.Select(x => (uint)x).ToArray()),
+                GameId = newid,
+                //PlayerOnTheMove = player1,
+                //PlayerWins = string.Empty,
+                PlayerName1 = player1,
+                PlayerName2 = AIPlayerName,
                 IsGameOver = false,
             };
 
@@ -38,6 +59,8 @@ namespace GamesOnline.Models
             if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Invalid count" };
 
             state.Nim = state.Nim.TakeCoins(pile, (uint)count);
+
+            if (state.PlayerName2 == AIPlayerName) state.Nim = state.Nim.AiMove();
 
             return state;
         }

@@ -40,7 +40,8 @@ namespace GamesOnline.Controllers
 
         public JsonResult NewGameAI(string gameName, string player1)
         {
-            return null;
+            var randomPiles = CreateRandomPiles();
+            return Json(_repo.NewAIGame(gameName, randomPiles, player1), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Move(string id, int pile, int count, string playerName)
