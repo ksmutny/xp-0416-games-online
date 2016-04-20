@@ -90,10 +90,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Calculator.feature</DependentUpon>
     </Compile>
+    <Compile Include="FeatureFiles\NimAI.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NimAI.feature</DependentUpon>
+    </Compile>
+    <Compile Include="FeatureFiles\NimHotSeat.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NimHotSeat.feature</DependentUpon>
+    </Compile>
     <Compile Include="Minimax\MinimaxTest.cs" />
     <Compile Include="Models\CalculatorSteps.cs" />
     <Compile Include="Models\CalculatorTest.cs" />
+    <Compile Include="Models\NimHotSeatSteps.cs" />
     <Compile Include="Models\NimTest.cs" />
+    <Compile Include="Models\PokusSteps.cs" />
     <Compile Include="Models\RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -108,6 +120,14 @@
     <None Include="FeatureFiles\Calculator.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Calculator.feature.cs</LastGenOutput>
+    </None>
+    <None Include="FeatureFiles\NimAI.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NimAI.feature.cs</LastGenOutput>
+    </None>
+    <None Include="FeatureFiles\NimHotSeat.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NimHotSeat.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>

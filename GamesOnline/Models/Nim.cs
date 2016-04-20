@@ -5,10 +5,16 @@ using System.Web;
 
 namespace GamesOnline.Models
 {
-    public enum Player { One, Two }
+    public enum Player { One = 1, Two = 2 }
 
     public class Nim
     {
+        public const int MinPileCount = 2;
+        public const int MaxPileCount = 5;
+
+        public const int MinItemsInPile = 3;
+        public const int MaxItemsInPile = 6;
+
         public uint[] Piles;
         public readonly Player ActivePlayer;
 
@@ -34,6 +40,19 @@ namespace GamesOnline.Models
             newPiles[pileIndex] -= coinsCount;
             var newState = new Nim(this.NextPlayer, newPiles);
             return newState;
+        }
+
+        public static int[] CreateRandomPiles()
+        {
+            var random = new Random();
+
+            var result = new int[random.Next(MinPileCount, MaxPileCount + 1)];
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i] = random.Next(MinItemsInPile, MaxItemsInPile + 1);
+            }
+
+            return result;
         }
     }
 }
