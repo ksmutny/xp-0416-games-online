@@ -107,6 +107,7 @@
     <Compile Include="Models\NimHotSeatSteps.cs" />
     <Compile Include="Models\NimTest.cs" />
     <Compile Include="Models\RepositoryTest.cs" />
+    <Compile Include="NimAISteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
