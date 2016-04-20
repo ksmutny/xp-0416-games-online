@@ -178,7 +178,7 @@ function GenerateGameHtml(model) {
 
         window.ModelTable.push(arr);
 
-        html += "<tr>";
+        html += '<tr class="pilRow" >';
 
         for (var j = 0; j < model.Piles[i]; j++) {
 
