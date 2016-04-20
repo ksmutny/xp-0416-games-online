@@ -39,14 +39,6 @@ function MakeMove() {
 
 function GetNewGame() {
 
-    //$.getJSON(
-    //    'NewGame',
-
-    //    function (res) {
-    //        // call jirka js new game
-    //        GenerateGameHtml(res);
-    //    })
-
     var id = S4();
 
     $.post(newGameUrl, {
@@ -60,6 +52,12 @@ function GetNewGame() {
     })
 
 }
+
+
+function GetNewGameUI() {
+
+}
+
 
 function ShowMakeMove(how) {
 
