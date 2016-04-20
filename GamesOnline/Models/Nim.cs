@@ -35,5 +35,43 @@ namespace GamesOnline.Models
             var newState = new Nim(this.NextPlayer, newPiles);
             return newState;
         }
+
+        // returns 0 when all xors are 0
+        public int Evaluate()
+        {
+            for (int bit = 0; bit < 30; bit++)
+            {
+                int sum = Piles.Select(x => (x & (1 << bit)) != 0 ? 1 : 0).Sum() % 2;
+                if (sum != 0) return 1;
+            }
+            return 0;
+        }
+
+        public IEnumerable<Nim> Generate()
+        {
+            for(int pile = 0; pile < Piles.Length; pile++)
+            {
+                for(int count = 1; count <= Piles[pile]; count++)
+                {
+                    yield return TakeCoins(pile, (uint)count);
+                }
+            }
+        }
+
+        public Nim AiMove()
+        {
+            var nextLevel = Generate();
+            foreach(var item in nextLevel)
+            {
+                if (item.Evaluate() == 0) return item;
+            }
+            // AI win is not sure, make any move
+
+            var notNullIndexes = new List<int>();
+            for (int i = 0; i < Piles.Length; i++) if (Piles[i] > 0) notNullIndexes.Add(i);
+            var rand = new Random();
+            int removeFromPile = notNullIndexes[rand.Next(notNullIndexes.Count)];
+            return TakeCoins(removeFromPile, 1);
+        }
     }
 }

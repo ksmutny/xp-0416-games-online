@@ -11,20 +11,20 @@ namespace GamesOnline.Models
 
         public Dictionary<string, GameState> ActiveGames = new Dictionary<string, GameState>();
 
-        public GameState NewGame(string gameName, int[] pilesCountArray, string player1, string player2)
+        public GameState NewGame(string gameName, uint[] pilesCountArray, string player1, string player2)
         {
             string newid = gameName;
+
             var res = new GameState
             {
+                Nim = new Nim(Player.One, pilesCountArray.Select(x => (uint)x ).ToArray()),
                 GameId = newid,
-                PlayerOnTheMove = player1,
-                PlayerWins = string.Empty,
+                //PlayerOnTheMove = player1,
+                //PlayerWins = string.Empty,
                 PlayerName1 = player1,
                 PlayerName2 = player2,
                 IsGameOver = false,
             };
-            
-            res.Piles = pilesCountArray; 
 
             ActiveGames[newid] = res;
             return res;
@@ -45,7 +45,7 @@ namespace GamesOnline.Models
                 return state;
             }
 
-            state.PlayerOnTheMove = state.PlayerOnTheMove == state.PlayerName1 ? state.PlayerName2 : state.PlayerName1;
+            state.Nim = state.Nim.TakeCoins(pile, (uint)count);
 
             return state;
         }

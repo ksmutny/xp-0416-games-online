@@ -91,6 +91,7 @@
       <DependentUpon>Calculator.feature</DependentUpon>
     </Compile>
     <Compile Include="Minimax\MinimaxTest.cs" />
+    <Compile Include="Models\AITests.cs" />
     <Compile Include="Models\CalculatorSteps.cs" />
     <Compile Include="Models\CalculatorTest.cs" />
     <Compile Include="Models\NimTest.cs" />
