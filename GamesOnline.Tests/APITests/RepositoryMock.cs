@@ -19,7 +19,7 @@ namespace GamesOnline.Tests.APITests
             _state = mockState;
         }
 
-        public GameState NewGame(string gameName, int[] pilesCountArray, string player1, string player2)
+        public GameState NewGame(string gameName, uint[] pilesCountArray, string player1, string player2)
         {
             return _state;
         }
@@ -27,6 +27,11 @@ namespace GamesOnline.Tests.APITests
         public GameState Move(string gameid, string playerName, int pile, int count)
         {
             return _state;
-        }       
+        }
+
+        public GameState NewAIGame(string gameName, uint[] pilesCountArray, string player1)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

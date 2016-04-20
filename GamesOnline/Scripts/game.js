@@ -1,25 +1,32 @@
 ﻿function S4() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
-
+// public JsonResult NewGame(string gameName, string player1, string player2)
+// public JsonResult Move(string id, int pile, int count, string playerName)
 function InitNim() {
 
-    $('.newGame').click(function () {
+    $('#btnNewGame').click(function () {
         GetNewGame();
     });
 
-    $('.move').click(function () {
+    $('#btnNewGameUI').click(function () {
+        GetNewGameUI();
+    });
+
+    $('#btnMove').click(function () {
         // call jirka function to get params
         MakeMove();
     });
 
-    GetNewGame();
+    ShowMakeMove();
+
+
 }
 
 function MakeMove() {
     var input = GetInput();
 
-    $.post('Move', {
+    $.post(moveUrl, {
         id: window.modelId,
         pile: input[0],
         count: input[1],
@@ -34,20 +41,12 @@ function MakeMove() {
 
 function GetNewGame() {
 
-    //$.getJSON(
-    //    'NewGame',
-
-    //    function (res) {
-    //        // call jirka js new game
-    //        GenerateGameHtml(res);
-    //    })
-
     var id = S4();
 
-    $.post('NewGame', {
-        NewGame: id,
-        player1: 'a',
-        player2: 'b',
+    $.post(newGameUrl, {
+        player1: '1',
+        player2: '2',
+        gameName: id,
     },
     function (res) {
         // call jirka js new game
@@ -56,7 +55,33 @@ function GetNewGame() {
 
 }
 
+
+function GetNewGameUI() {
+
+    var id = S4();
+
+    $.post(newGameUrl, {
+        player1: 'Člověk',
+        player2: 'Počítač',
+        gameName: id,
+    },
+    function (res) {
+        // call jirka js new game
+        GenerateGameHtml(res);
+    })
+
+}
+
+
 function ShowMakeMove(how) {
+
+
+    if (IsSomeOn()) {
+        $('#btnMove').show();
+    }
+    else {
+        $('#btnMove').hide();
+    }
 
 
 }
@@ -64,6 +89,27 @@ function ShowMakeMove(how) {
 function ShowMessage(text) {
 
     $("#messageText").html(text);
+
+}
+
+
+
+function IsSomeOn() {
+
+    if (window.ModelTable) {
+
+        for (var a = 0; a < window.ModelTable.length ; a++) {
+
+            for (var b = 0; b < window.ModelTable[a].length ; b++) {
+
+                if (ModelTable[a][b]) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
 
 }
 
@@ -93,6 +139,8 @@ function MakeClick(i, j) {
 
     }
 
+    ShowMakeMove();
+
 
 }
 
@@ -109,9 +157,9 @@ function GenerateGameHtml(model) {
     }
     else
         if (model.PlayerWins) {
-            ShowMessage("Vyhrál hráč " + model.PlayerWins);
+            ShowMessage("Vyhrál hráč : " + model.PlayerWins);
         }
-        else { ShowMessage("Hraje hráč " + model.PlayerOnTheMove); }
+        else { ShowMessage("Hraje hráč : " + model.PlayerOnTheMove); }
 
 
 
@@ -147,6 +195,9 @@ function GenerateGameHtml(model) {
     html += "</table>";
 
     $("#gameContainer").html(html);
+
+
+    ShowMakeMove();
 
 
 

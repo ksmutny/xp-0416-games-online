@@ -15,7 +15,7 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var piles = new int[] { 5, 2, 5 };
+            var piles = new uint[] { 5, 2, 5 };
 
             var state = repo.NewGame("test Hra", piles, "A", "B");
 
@@ -27,7 +27,7 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var piles = new int[] { 5, 2, 5 };
+            var piles = new uint[] { 5, 2, 5 };
 
             var gameId = repo.NewGame("test Hra", piles, "A", "B").GameId;
 
@@ -47,7 +47,7 @@ namespace GamesOnline.Tests.Models
         {
             var repo = Repository.Instance;
 
-            var piles = new int[] { 5, 2, 5 };
+            var piles = new uint[] { 5, 2, 5 };
 
             var state = repo.NewGame("test Hra", piles, "A", "B");
             //while (state.PlayerWins == string.Empty)

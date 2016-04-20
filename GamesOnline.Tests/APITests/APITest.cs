@@ -15,8 +15,9 @@ namespace GamesOnline.Tests.APITests
         {
             var gs = new GameState {
                 GameId = "42",
-                Piles = new int[] { 2, 3, 4, 2 },
-                PlayerOnTheMove = string.Empty,
+                Nim = new Nim(Player.One, new uint[] { 2, 3, 4, 2 }),
+                //Piles = new int[] { 2, 3, 4, 2 },
+                //PlayerOnTheMove = string.Empty,
                 PlayerName1 = string.Empty,
                 PlayerName2 = string.Empty                
             };
@@ -46,8 +47,7 @@ namespace GamesOnline.Tests.APITests
             var gs = new GameState
             {
                 GameId = "42",
-                Piles = new int[] { 2, 3, 4, 2 },
-                PlayerOnTheMove = string.Empty,
+                Nim = new Nim(Player.One, new uint[] { 2, 3, 4, 2 }),
                 PlayerName1 = string.Empty,
                 PlayerName2 = string.Empty
             };
@@ -77,8 +77,9 @@ namespace GamesOnline.Tests.APITests
             var gs = new GameState
             {
                 GameId = "42",
-                Piles = new int[] { 2, 3, 4, 2 },
-                PlayerOnTheMove = "Player1",
+                Nim = new Nim(Player.One, new uint[] { 2, 3, 4, 2 }),
+                //Piles = new int[] { 2, 3, 4, 2 },
+                //PlayerOnTheMove = "Player1",
                 PlayerName1 = "Player1",
                 PlayerName2 = string.Empty
             };
@@ -108,8 +109,9 @@ namespace GamesOnline.Tests.APITests
             var gs = new GameState
             {
                 GameId = "42",
-                Piles = new int[] { 2, 3, 4, 2 },
-                PlayerOnTheMove = "Player1",
+                Nim = new Nim(Player.One, new uint[] { 2, 3, 4, 2 }),
+                //Piles = new uint[] { 2, 3, 4, 2 },
+                //PlayerOnTheMove = "Player1",
                 PlayerName1 = "Player1",
                 PlayerName2 = string.Empty
             };

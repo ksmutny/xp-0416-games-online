@@ -101,11 +101,11 @@
       <DependentUpon>NimHotSeat.feature</DependentUpon>
     </Compile>
     <Compile Include="Minimax\MinimaxTest.cs" />
+    <Compile Include="Models\AITests.cs" />
     <Compile Include="Models\CalculatorSteps.cs" />
     <Compile Include="Models\CalculatorTest.cs" />
     <Compile Include="Models\NimHotSeatSteps.cs" />
     <Compile Include="Models\NimTest.cs" />
-    <Compile Include="Models\PokusSteps.cs" />
     <Compile Include="Models\RepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

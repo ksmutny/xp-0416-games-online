@@ -38,6 +38,12 @@ namespace GamesOnline.Controllers
             return Json(_repo.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult NewGameAI(string gameName, string player1)
+        {
+            var randomPiles = CreateRandomPiles();
+            return Json(_repo.NewAIGame(gameName, randomPiles, player1), JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult Move(string id, int pile, int count, string playerName)
         {
             try
@@ -53,14 +59,14 @@ namespace GamesOnline.Controllers
             return Json(string.Empty, JsonRequestBehavior.DenyGet);            
         }
 
-        private int[] CreateRandomPiles()
+        private uint[] CreateRandomPiles()
         {
             var random = new Random();
 
-            var result = new int[random.Next(MinPileCount, MaxPileCount + 1)];
+            var result = new uint[random.Next(MinPileCount, MaxPileCount + 1)];
             for (int i = 0; i < result.Length; i++)
             {
-                result[i] = random.Next(MinItemsInPile, MaxItemsInPile + 1);
+                result[i] = (uint)random.Next(MinItemsInPile, MaxItemsInPile + 1);
             }
 
             return result;
