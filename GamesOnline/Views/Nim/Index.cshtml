@@ -45,14 +45,14 @@
 <script>
 
 
-
-
+    var newGameUrl;
+    var moveUrl;
     $(document).ready(function () {
 
+        newGameUrl = '@Url.Action("NewGame", "Nim")';
+        moveUrl = '@Url.Action("Move", "Nim")';
 
         InitNim();
-
-
     });
 
 
