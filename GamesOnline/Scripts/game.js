@@ -24,6 +24,22 @@ function InitNim() {
 }
 
 function MakeMove() {
+
+
+    MakeMoveServer();
+
+    //if (isAI) {
+
+    //    window.ModelFromServer ;
+
+    //    setTimeout(function () { MakeMoveServer(); }, 2000);
+    //}
+    //else {
+    //    MakeMoveServer()
+    //}
+}
+
+function MakeMoveServer() {
     var input = GetInput();
 
     $.post(moveUrl, {
@@ -41,6 +57,9 @@ function MakeMove() {
 
 function GetNewGame() {
 
+
+    isAI = false;
+
     var id = S4();
 
     $.post(newGameUrl, {
@@ -57,6 +76,8 @@ function GetNewGame() {
 
 
 function GetNewGameUI() {
+
+    isAI = true;
 
     var id = S4();
 
@@ -180,12 +201,18 @@ function GenerateGameHtml(model) {
 
         html += '<tr class="pilRow" >';
 
-        for (var j = 0; j < model.Piles[i]; j++) {
 
-            arr.push(false);
+        //for (var j = 0; j < model.Piles[i]; j++) {
+        for (var j = 0; j < 6; j++) {
+
+
 
             html += "<td>";
-            html += GetItem(i, j);
+
+            if (j < model.Piles[i]) {
+                arr.push(false);
+                html += GetItem(i, j);
+            }
             html += "</td>";
         }
 
