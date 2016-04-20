@@ -60,7 +60,7 @@ function GetNewGameUI() {
 
     var id = S4();
 
-    $.post(newGameUrl, {
+    $.post(newGameUrlAI, {
         player1: 'Člověk',
         player2: 'Počítač',
         gameName: id,
