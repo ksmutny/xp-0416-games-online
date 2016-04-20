@@ -4,11 +4,15 @@
 
 function InitNim() {
 
-    $('.newGame').click(function () {
+    $('#btnNewGame').click(function () {
         GetNewGame();
     });
 
-    $('.move').click(function () {
+    $('#btnNewGameUI').click(function () {
+        GetNewGameUI();
+    });
+
+    $('#btnMove').click(function () {
         // call jirka function to get params
         MakeMove();
     });
