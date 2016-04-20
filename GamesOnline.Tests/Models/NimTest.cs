@@ -57,6 +57,39 @@ namespace GamesOnline.Tests.Models
             Assert.Equal(expectedIsOver, state.IsOver);
         }
 
-        
+        [Fact]
+        public void ConstructorTest_TakeCoins()
+        {
+            var state = new Nim(Player.One, new uint[] { 3, 4 });
+            var newState = state.TakeCoins(1, 2);
+            Assert.True(new uint[] { 3, 2 }.SequenceEqual(newState.Piles));
+            Assert.Equal(Player.Two, newState.ActivePlayer);
+            Assert.False(newState.IsOver);
+            Assert.True(new uint[] { 3, 4 }.SequenceEqual(state.Piles));
+        }
+
+        [Fact]
+        public void ConstructorTest_TakeCoinsPlayerTwo()
+        {
+            var state = new Nim(Player.Two, new uint[] { 3, 4 });
+            var newState = state.TakeCoins(1, 2);
+            Assert.Equal(Player.One, newState.ActivePlayer);
+        }
+
+        [Fact]
+        public void ConstructorTest_TakeCoinsInvalidPile()
+        {
+            var state = new Nim(Player.Two, new uint[] { 3, 4 });
+            Assert.Throws<IndexOutOfRangeException>(() => state.TakeCoins(3, 2));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(5)]
+        public void ConstructorTest_TakeInvalidCoins(uint coins)
+        {
+            var state = new Nim(Player.Two, new uint[] { 3, 4 });
+            Assert.Throws<ArgumentOutOfRangeException>(() => state.TakeCoins(1, coins));
+        }
     }
 }

@@ -15,9 +15,16 @@ namespace GamesOnline.Controllers
         public const int MinItemsInPile = 3;
         public const int MaxItemsInPile = 6;
 
+        private IRepository _repo;
+
         public NimController()
         {
+            _repo = Repository.Instance;
+        }
 
+        public NimController(IRepository repo)
+        {
+            _repo = repo;
         }
 
         public ActionResult Index()
@@ -25,15 +32,25 @@ namespace GamesOnline.Controllers
             return View();
         }
 
-        public ActionResult NewGame(string gameName, string player1, string player2)
+        public JsonResult NewGame(string gameName, string player1, string player2)
         {
             var randomPiles = CreateRandomPiles();
-            return Json(Repository.Instance.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
+            return Json(_repo.NewGame(gameName, randomPiles, player1, player2), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Move(string id, int pile, int count, string playerName)
+        public JsonResult Move(string id, int pile, int count, string playerName)
         {
-            return Json(Repository.Instance.Move(id, playerName, pile, count), JsonRequestBehavior.DenyGet);            
+            try
+            {
+                var res = _repo.Move(id, playerName, pile, count);
+                return Json(res, JsonRequestBehavior.DenyGet);
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+            }
+
+            return Json(string.Empty, JsonRequestBehavior.DenyGet);            
         }
 
         private int[] CreateRandomPiles()
