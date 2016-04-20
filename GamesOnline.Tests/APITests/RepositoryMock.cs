@@ -32,11 +32,6 @@ namespace GamesOnline.Tests.APITests
         public GameState Move(string gameid, string playerName, int pile, int count)
         {
             return _state;
-        }
-
-        public GameState NewAIGame(string gameName, uint[] pilesCountArray, string player1)
-        {
-            throw new NotImplementedException();
-        }
+        }        
     }
 }
