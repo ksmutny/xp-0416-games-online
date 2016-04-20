@@ -20,23 +20,28 @@
         <p id="messageText" class="player">Hraje hráč číslo: </p>
             <div id="gameContainer"></div>
 
-            <div  id="ButtonMove" class="button move">Potvrdit tah</div>
+            <div  id="btnMove" class="button move">Potvrdit tah</div>
         </div>
 
         <div class="help">
             <h2>Pravidla</h2>
 
             <p>
-                Nim is a mathematical game of strategy in
+                @*Nim is a mathematical game of strategy in
                 which 2 players take turns removing objects
                 from distinct heaps. On each turn a player
                 must remove at least one object and may
                 remove any number of continous objects
                 provided they all come from the same heap.
-                The player who swipes the last object wins.
+                The player who swipes the last object wins.*@
+                Nim je kombinatorická hra pro dva hráče spočívající v odebírání objektů z několika hromádek. <br />
+                V každém tahu smí hráč odebrat odebrat několik objektů (vždy alespoň jeden) z některé hromádky.<br />
+                Hráč, který odebere poslední objekt vyhrává.
             </p>
 
-            <div class="button newGame">Nová hra</div>
+            <h2>Nová hra</h2>
+            <div id="btnNewGame" class="button newGame">2 hráči</div>
+            <div id="btnNewGameUI"class="button newGame">Proti počitači</div>
         </div>
     </div>
 </body>
@@ -45,14 +50,14 @@
 <script>
 
 
-
-
+    var newGameUrl;
+    var moveUrl;
     $(document).ready(function () {
 
+        newGameUrl = '@Url.Action("NewGame", "Nim")';
+        moveUrl = '@Url.Action("Move", "Nim")';
 
         InitNim();
-
-
     });
 
 
