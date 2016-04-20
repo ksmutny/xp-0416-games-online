@@ -55,9 +55,9 @@ namespace GamesOnline.Models
         {
             if (gameid == null || !ActiveGames.ContainsKey(gameid)) return new GameState { ErrorMessage = "Game expired" };
             var state = ActiveGames[gameid];
-            if (pile < 0 || pile >= state.Piles.Length) return new GameState { ErrorMessage = "Invalid pile" };
-            if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Invalid count" };
-
+            if (pile < 0 || pile >= state.Piles.Length) return new GameState { ErrorMessage = "Neplatný tah" };
+            if (count < 0 || count > state.Piles[pile]) return new GameState { ErrorMessage = "Neplatný počet" };
+           
             state.Nim = state.Nim.TakeCoins(pile, (uint)count);
 
             if (state.PlayerName2 == AIPlayerName) state.Nim = state.Nim.AiMove();

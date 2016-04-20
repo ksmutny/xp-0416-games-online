@@ -18,7 +18,9 @@ function InitNim() {
         MakeMove();
     });
 
-    GetNewGame();
+    ShowMakeMove();
+
+
 }
 
 function MakeMove() {
@@ -42,8 +44,8 @@ function GetNewGame() {
     var id = S4();
 
     $.post(newGameUrl, {
-        player1: 'a',
-        player2: 'b',
+        player1: '1',
+        player2: '2',
         gameName: id,
     },
     function (res) {
@@ -56,10 +58,30 @@ function GetNewGame() {
 
 function GetNewGameUI() {
 
+    var id = S4();
+
+    $.post(newGameUrl, {
+        player1: 'Člověk',
+        player2: 'Počítač',
+        gameName: id,
+    },
+    function (res) {
+        // call jirka js new game
+        GenerateGameHtml(res);
+    })
+
 }
 
 
 function ShowMakeMove(how) {
+
+
+    if (IsSomeOn()) {
+        $('#btnMove').show();
+    }
+    else {
+        $('#btnMove').hide();
+    }
 
 
 }
@@ -67,6 +89,27 @@ function ShowMakeMove(how) {
 function ShowMessage(text) {
 
     $("#messageText").html(text);
+
+}
+
+
+
+function IsSomeOn() {
+
+    if (window.ModelTable) {
+
+        for (var a = 0; a < window.ModelTable.length ; a++) {
+
+            for (var b = 0; b < window.ModelTable[a].length ; b++) {
+
+                if (ModelTable[a][b]) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
 
 }
 
@@ -96,6 +139,8 @@ function MakeClick(i, j) {
 
     }
 
+    ShowMakeMove();
+
 
 }
 
@@ -112,9 +157,9 @@ function GenerateGameHtml(model) {
     }
     else
         if (model.PlayerWins) {
-            ShowMessage("Vyhrál hráč " + model.PlayerWins);
+            ShowMessage("Vyhrál hráč : " + model.PlayerWins);
         }
-        else { ShowMessage("Hraje hráč " + model.PlayerOnTheMove); }
+        else { ShowMessage("Hraje hráč : " + model.PlayerOnTheMove); }
 
 
 
@@ -150,6 +195,9 @@ function GenerateGameHtml(model) {
     html += "</table>";
 
     $("#gameContainer").html(html);
+
+
+    ShowMakeMove();
 
 
 
